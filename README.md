@@ -1,1 +1,1 @@
-# Django-Celary-RabbitMQ
+# Django-Celery-RabbitMQ

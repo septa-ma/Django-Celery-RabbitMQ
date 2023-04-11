@@ -57,6 +57,7 @@
     - Use the publish-subscribe pattern to route messages based on content and topic.
 
 # 5- how add it in the project?
+
 - **1- make a django app:**
     - python -m venv venv
     - source venv/bin/activate
@@ -69,12 +70,48 @@
 
 - **2- install celery:**
     - python -m pip install celery
-    - python -m celery worker
 
-- **3- add celery in the app:**
-    - celery.py in core folder
+- **3- add celery in django project :**
+    - 1- create celery.py file in django project and add these: 
+        - import os
+        - from celery import Celery
+        - os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project_name.settings')
+        - app = Celery('project_name')
+        - app.config_from_object('django.conf:settings',namespace='CELERY')
+        - app.autodiscover_tasks()
+        - @app.task(bind=True)
+        - def debug_task(self):
+            - print(f'Request: {self.request!r}')
 
+    - 2- import this app in your proj/proj/__init__.py module:
+        - from .celery import app as celery_app
+        - __all__ = ('celery_app',)
+
+    - 3- add Celery Configuration Options in settings.py for example:
+        - CELERY_TIMEZONE = "Australia/Tasmania"
+        - CELERY_TASK_TRACK_STARTED = True
+        - CELERY_TASK_TIME_LIMIT = 30 * 60
+        - ...
+
+- **4- add tasks.py inside each app of django project:**
+    - the @shared_task decorator lets you create tasks without having any concrete app instance
+    - inside tasks.py add:
+        - from app.models import myModel
+        - from celery import shared_task
+
+        - @shared_task
+        - def fun_name(sth):
+            - do sth on myModel
+            - return sth
+
+        - ect tasks ...
+
+**what's going on in the project?**
+- Producer: Django app
+- Message Broker: RabbitMQ server
+- Consumer: Celery app
 
 # sources:
+- **https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html#using-celery-with-django**
 - **https://realpython.com/asynchronous-tasks-with-django-and-celery/**
 - **https://geekflare.com/top-message-brokers/**

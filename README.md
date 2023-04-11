@@ -58,7 +58,21 @@
     - Use the publish-subscribe pattern to route messages based on content and topic.
 
 # 5- how add it in the project?
+- 1- make a django app
+- python -m venv venv
+- source venv/bin/activate
+- python -m pip install django
+- django-admin startproject core .
+- python manage.py startapp app
+- python manage.py migrate
+- python manage.py runserver
 
+- 2- install celery
+- python -m pip install celery
+- python -m celery worker
+
+- 3- add celery in the app
+- celery.py in core folder
 
 
 # sources:

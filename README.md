@@ -29,7 +29,6 @@
 - A message broker is a software tool that facilitates services and applications to transfer messages for communication and information exchange.
 - Message brokers can secure, archive, route, and dispatch messages to the appropriate recipients. 
 - They operate as a bridge between various applications, allowing senders to send messages without being familiar with the location, activity, or number of recipients.
-- AMQP is an authorized messaging protocols which Message Broker works with for transforming messages.
 
 - **basic consepts:**
     - Producer: Is an endpoint which sends any kind of data, that is stored inside the message broker to distribute.
@@ -59,21 +58,21 @@
 
 # 5- how add it in the project?
 - **1- make a django app:**
-- python -m venv venv
-- source venv/bin/activate
-- python -m pip install django
-- django-admin startproject core .
-- python manage.py startapp app
-- python manage.py makemigrations
-- python manage.py migrate
-- python manage.py runserver
+    - python -m venv venv
+    - source venv/bin/activate
+    - python -m pip install django
+    - django-admin startproject core .
+    - python manage.py startapp app
+    - python manage.py makemigrations
+    - python manage.py migrate
+    - python manage.py runserver
 
 - **2- install celery:**
-- python -m pip install celery
-- python -m celery worker
+    - python -m pip install celery
+    - python -m celery worker
 
 - **3- add celery in the app:**
-- celery.py in core folder
+    - celery.py in core folder
 
 
 # sources:

@@ -68,8 +68,12 @@
     - python manage.py migrate
     - python manage.py runserver
 
-- **2- install celery:**
+- **2- install celery and rabbitmq:**
     - python -m pip install celery
+    - sudo apt install rabbitmq-server
+    - sudo systemctl enable rabbitmq-server
+    - sudo systemctl start rabbitmq-server
+    - systemctl status rabbitmq-server
 
 - **3- add celery in django project :**
     - 1- create celery.py file in django project and add these: 
@@ -105,6 +109,16 @@
             - return sth
 
         - ect tasks ...
+
+- **5- run and test the task:**
+    - open 2 terminals 
+    - at the first one:
+        - celery -A core worker -l info
+    - at the second:
+        - python manage.py shell
+        - from app.tasks import add
+        - add.delay(4,1) or add.apply_async((3,3), countdown=5)
+        - now at the first terminal you can see the result.
 
 **what's going on in the project?**
 - Producer: Django app

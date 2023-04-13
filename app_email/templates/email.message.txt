@@ -1,0 +1,5 @@
+Hi {{name|safe}}
+Here is a copy of your suggestion:
+{{suggestion|safe}}
+
+Thanks for your feedback.

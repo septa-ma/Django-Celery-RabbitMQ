@@ -121,9 +121,9 @@
         - now at the first terminal you can see the result.
 
 **what's going on in the project?**
-- Producer: Django app
-- Message Broker: RabbitMQ server
-- Consumer: Celery app
+- simple task for understanding celery in app 
+- send feedback email in app_email
+
 
 # sources:
 - **https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html#using-celery-with-django**

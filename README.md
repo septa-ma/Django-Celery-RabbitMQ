@@ -121,11 +121,41 @@
         - now at the first terminal you can see the result.
 
 # 6- what's going on in the project?
-- simple task for understanding celery mechanism
-- send feedback email 
-- scheduling with celery-beat
-- monitoring tasks with flower
-- store celery result 
+- 1- simple task for understanding celery mechanism.
+
+- 2- send feedback email. 
+    - explain the steps as comments
+
+- 3- scheduling with celery-beat
+    - pip install django-celery-beat
+    - add the django_celery_beat module to INSTALLED_APPS in your Django project’ settings.py 
+    - apply Django database migrations so that the necessary tables are created:
+        - python manage.py migrate
+    - add this in settings.py
+        - CELERY_BEAT_SCHEDULE = {
+            - "scheduled_task": {
+                - "task": "app.tasks.add",
+                - "schedule": 5.0,
+                - "args": (14, 15),
+            - },
+        - }
+        - you can also make super user and define it in admin panel.
+    - start the celery beat service
+        - if add the task in settings -> celery -A core beat -l INFO
+        - if add it from admin panel -> celery -A core beat -l INFO --scheduler django_celery_beat.schedulers:DatabaseScheduler
+
+- 4- monitoring tasks with flower:
+    - pip install flower
+    - celery flower --port==5566
+    - in the browser enter '127.0.0.1:5566'
+
+- 5- store celery result 
+    - pip install django-celery-results
+    - add the django_celery_results module to INSTALLED_APPS and
+    also CELERY_RESULT_BACKEND = 'django-db'
+    in your Django project’ settings.py 
+    - apply Django database migrations so that the necessary tables are created:
+        - python manage.py migrate django_celery_results
 
 
 # sources:
@@ -133,3 +163,5 @@
 - **https://realpython.com/asynchronous-tasks-with-django-and-celery/**
 - **https://geekflare.com/top-message-brokers/**
 - **https://docs.djangoproject.com/en/4.1/topics/email/**
+- **https://flower.readthedocs.io/en/latest/install.html**
+- **https://docs.celeryq.dev/en/stable/userguide/periodic-tasks.html#introduction**

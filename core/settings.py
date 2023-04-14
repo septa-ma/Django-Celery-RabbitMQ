@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'app',
-    'app_email'
+    'app_email',
+    'django_celery_beat',
+    'django_celery_results'
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,13 @@ EMAIL_HOST_PASSWORD = 'testpass'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = 'test@gmail.com'
+
+CELERY_BEAT_SCHEDULE = {
+    "scheduled_task": {
+        "task": "app.tasks.add",
+        "schedule": 5.0,
+        "args": (14, 15),
+    },
+}
+
+CELERY_RESULT_BACKEND = 'django-db'

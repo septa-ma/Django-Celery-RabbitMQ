@@ -120,12 +120,16 @@
         - add.delay(4,1) or add.apply_async((3,3), countdown=5)
         - now at the first terminal you can see the result.
 
-**what's going on in the project?**
-- simple task for understanding celery in app 
-- send feedback email in app_email
+# 6- what's going on in the project?
+- simple task for understanding celery mechanism
+- send feedback email 
+- scheduling with celery-beat
+- monitoring tasks with flower
+- store celery result 
 
 
 # sources:
 - **https://docs.celeryq.dev/en/stable/django/first-steps-with-django.html#using-celery-with-django**
 - **https://realpython.com/asynchronous-tasks-with-django-and-celery/**
 - **https://geekflare.com/top-message-brokers/**
+- **https://docs.djangoproject.com/en/4.1/topics/email/**

@@ -1,3 +1,4 @@
+# 2- build a function for submitting the email form.
 from app_email.forms import SuggestionForm
 from django.views.generic.edit import FormView
 from django.http import HttpResponse

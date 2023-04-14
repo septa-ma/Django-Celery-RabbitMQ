@@ -128,11 +128,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
 
-# gmail_auth/settings.py
+# 7- SMTP backend settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'example@gmail.com'
-EMAIL_HOST_PASSWORD = 'emailpass'
+EMAIL_HOST_USER = 'test@gmail.com'
+EMAIL_HOST_PASSWORD = 'testpass'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = 'example@gmail.com'
+DEFAULT_FROM_EMAIL = 'test@gmail.com'

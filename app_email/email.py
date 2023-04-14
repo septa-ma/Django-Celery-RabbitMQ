@@ -1,7 +1,8 @@
+# 4- create email.py for email configuration that can be send.
 from django.template import Context
 from django.template.loader import render_to_string
-from django.conf import settings
 from django.core.mail import EmailMessage
+from django.conf import settings
 
 def send_suggestion_email(name, email, suggestion):
     context = {
@@ -9,11 +10,13 @@ def send_suggestion_email(name, email, suggestion):
         'email': email,
         'suggestion': suggestion,
     }
-    email_subject = 'thanks for your suggestion.'
-    email_body = render_to_string('email.message.txt', context)
+    subject = 'thanks for your suggestion.'
+    # 5- create email_message.txt for saving email content.
+    body = render_to_string('email_message.txt', context)
 
-    email = EmailMessage(
-        email_subject, email_body,
+    # use EmailMessage class for sending an email to a user.
+    emailMsg = EmailMessage(
+        subject, body,
         settings.DEFAULT_FROM_EMAIL, [email, ],
     )
-    return email.send(fail_silently=False)
+    return emailMsg.send(fail_silently=False)

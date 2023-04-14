@@ -4,5 +4,6 @@ from app_email.views import SuggestionEmailView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    # 8- add the route.
     path('suggestions/', SuggestionEmailView.as_view(), name="suggestions"),
 ]
